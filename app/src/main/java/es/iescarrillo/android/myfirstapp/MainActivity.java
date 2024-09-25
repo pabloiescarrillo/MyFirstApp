@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         EditText etName = findViewById(R.id.etName);
         EditText etSurname = findViewById(R.id.etSurname);
         Button btnSend = findViewById(R.id.btnOk);
+        Button btnReset = findViewById(R.id.btnReset);
 
         // Vamos asignarle un evento al botón cuando se haga clic
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
 
                 // Método para abrir otra activity
                 startActivity(intentDetailActivity);
+            }
+        });
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etName.setText("");
+                etSurname.setText("");
             }
         });
 
