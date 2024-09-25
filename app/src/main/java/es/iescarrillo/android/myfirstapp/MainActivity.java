@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,21 +43,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /* Para navegar a otra Activity necesitamos crear un Intent(contextActivity,
-                new Intent(estadoDelActvityActual, ActivityALaQueQueremosNavegar.class)
-                */
-                Intent intentDetailActivity = new Intent(MainActivity.this, DetailActivity.class);
+                if (etName.getText().toString().equals("")){
+                    Toast toastName = new Toast(MainActivity.this);
+                    toastName.setText("Name can´t be empty");
+                    toastName.show();
+                } else if(etSurname.getText().toString().equals("")){
+                    Toast toastSurname = new Toast(MainActivity.this);
+                    toastSurname.setText("Surname can´t be empty");
+                    toastSurname.show();
+                } else {
+                    /* Para navegar a otra Activity necesitamos crear un Intent(contextActivity,
+                    new Intent(estadoDelActvityActual, ActivityALaQueQueremosNavegar.class)
+                    */
+                    Intent intentDetailActivity = new Intent(MainActivity.this, DetailActivity.class);
 
-                // Añado las clave-valor al intent
-                intentDetailActivity.putExtra("name", etName.getText().toString());
-                intentDetailActivity.putExtra("surname", etSurname.getText().toString());
+                    // Añado las clave-valor al intent
+                    intentDetailActivity.putExtra("name", etName.getText().toString());
+                    intentDetailActivity.putExtra("surname", etSurname.getText().toString());
 
-                // Log para ver si se está enviando bien los valores
-                Log.i("name", etName.getText().toString());
-                Log.i("surname", etSurname.getText().toString());
+                    // Log para ver si se está enviando bien los valores
+                    Log.i("name", etName.getText().toString());
+                    Log.i("surname", etSurname.getText().toString());
 
-                // Método para abrir otra activity
-                startActivity(intentDetailActivity);
+                    // Método para abrir otra activity
+                    startActivity(intentDetailActivity);
+                }
             }
         });
 
